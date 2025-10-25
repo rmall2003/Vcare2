@@ -94,7 +94,8 @@
                     <input type="tel" id="phone" name="phone">
                 </div>
                 
-                   <label for="message">How can we help you?</label>
+                <div class="form-group">
+                    <label for="message">How can we help you?</label>
                     <!-- --- ADDED maxlength and aria-describedby --- -->
                     <textarea id="message" name="message" rows="6" required maxlength="200" aria-describedby="message-limit"></textarea>
                     <!-- --- ADDED Character counter --- -->
@@ -117,15 +118,14 @@
                 <p>Email: <a href="mailto:vcare1.enterprises@gmail.com">vcare1.enterprises@gmail.com</a></p>
                 <p>Phone: (123) 456-7890</p>
             </div>
-            <p>&copy; 2025<div class="form-group">
-                  Vcare. All rights reserved. Togetherness maintaining individual Privacy.</p>
+            <p>&copy; 2025 Vcare. All rights reserved. Togetherness maintaining individual Privacy.</p>
         </div>
     </footer>
 
     <!-- 
         JavaScript to handle the form submission 
     -->
-    <script>
+<script>
         const form = document.getElementById('contact-form');
         const statusMessage = document.getElementById('form-status');
         const submitButton = document.getElementById('submit-button');
