@@ -332,7 +332,10 @@ a:hover {
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: center; /* <-- CHANGED */
+    flex-direction: column; /* <-- ADDED */
+    text-align: center; /* <-- ADDED */
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
