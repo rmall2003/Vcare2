@@ -26,9 +26,11 @@ export default async function handler(req, res) {
     });
 
     // --- Email 1: Notification to Vcare ---
+    // This part has been updated for better "Reply" functionality
     const mailToVcare = {
-        from: `"${name}" <${email}>`, // Shows the user's name and email as the sender
-        to: 'vcare1.enterprises@gmail.com',
+        from: '"Vcare Website Form" <vcare1.enterprises@gmail.com>', // Sent FROM your address
+        to: 'vcare1.enterprises@gmail.com',                     // Sent TO your address
+        replyTo: `"${name}" <${email}>`,                       // When you hit Reply, it goes to the user
         subject: `New Vcare Contact Form Submission from ${name}`,
         html: `
             <div style="font-family: Arial, sans-serif; line-height: 1.6;">
@@ -44,6 +46,7 @@ export default async function handler(req, res) {
     };
 
     // --- Email 2: Auto-response to the User ---
+    // (This part remains unchanged)
     const mailToUser = {
         from: '"Vcare" <vcare1.enterprises@gmail.com>', // From your official email
         to: email,
@@ -80,3 +83,4 @@ export default async function handler(req, res) {
         return res.status(500).json({ status: 'Error', message: 'Something went wrong.' });
     }
 }
+
