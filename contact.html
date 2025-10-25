@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="../styles/main.css">
+    <!-- Main Stylesheet (Path Updated) -->
+    <link rel="stylesheet" href="styles/main.css">
     <style>
         /* Styles for success and error messages */
         #form-status {
@@ -29,6 +29,21 @@
             color: #721c24;
             display: block;
         }
+        
+        /* --- ADDED --- */
+        /* Styles for the character counter */
+        .char-counter {
+            text-align: right;
+            font-size: 0.875rem;
+            color: #555;
+            margin-top: -0.75rem;
+            margin-bottom: 1rem;
+        }
+        .char-counter.error {
+            color: #721c24;
+            font-weight: 600;
+        }
+        /* --- END ADDED --- */
     </style>
 </head>
 <body>
@@ -37,7 +52,8 @@
     <header class="header">
         <div class="container header-container">
             <div class="logo-area">
-                <img src="../assets/vcare-logo.png" alt="Vcare Logo" class="logo-img" onerror="this.src='https://placehold.co/40x40/005A9C/FFFFFF?text=V'">
+                <!-- Path Updated -->
+                <img src="assets/vcare-logo.png" alt="Vcare Logo" class="logo-img" onerror="this.src='https://placehold.co/40x40/005A9C/FFFFFF?text=V'">
                 <div class="logo-text">
                     <h1>Vcare</h1>
                     <p>...really cares</p>
@@ -45,10 +61,11 @@
             </div>
             <nav class="nav">
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./about.html">About Us</a></li>
-                    <li><a href="./services.html">Services</a></li>
-                    <li><a href="./contact.html" class="active">Contact</a></li>
+                    <!-- Paths Updated -->
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -60,9 +77,6 @@
             <h1 class="section-title">Get in Touch</h1>
             <p class="text-center" style="max-width: 600px; margin: -1rem auto 2rem auto;">Have a question or a proposal for your group? We would love to hear from you. Fill out the form below, and we'll get back to you as soon as possible.</p>
             
-            <!-- 
-                Removed 'action' and 'method'. Added id="contact-form" 
-            -->
             <form id="contact-form" class="contact-form">
                 
                 <div class="form-group">
@@ -80,9 +94,11 @@
                     <input type="tel" id="phone" name="phone">
                 </div>
                 
-                <div class="form-group">
-                    <label for="message">How can we help you?</label>
-                    <textarea id="message" name="message" rows="6" maxlength="200" required></textarea>
+                   <label for="message">How can we help you?</label>
+                    <!-- --- ADDED maxlength and aria-describedby --- -->
+                    <textarea id="message" name="message" rows="6" required maxlength="200" aria-describedby="message-limit"></textarea>
+                    <!-- --- ADDED Character counter --- -->
+                    <div id="message-limit" class="char-counter">0 / 200</div>
                 </div>
 
                 <!-- This div will show success or error messages -->
@@ -101,35 +117,68 @@
                 <p>Email: <a href="mailto:vcare1.enterprises@gmail.com">vcare1.enterprises@gmail.com</a></p>
                 <p>Phone: (123) 456-7890</p>
             </div>
-            <p>&copy; 2025 Vcare. All rights reserved. Togetherness maintaining individual Privacy.</p>
+            <p>&copy; 2025<div class="form-group">
+                  Vcare. All rights reserved. Togetherness maintaining individual Privacy.</p>
         </div>
     </footer>
 
-    <!-- JavaScript to handle the form submission -->
+    <!-- 
+        JavaScript to handle the form submission 
+    -->
     <script>
         const form = document.getElementById('contact-form');
         const statusMessage = document.getElementById('form-status');
         const submitButton = document.getElementById('submit-button');
+        
+        // --- ADDED ---
+        // Character counter logic
+        const messageInput = document.getElementById('message');
+        const messageLimit = document.getElementById('message-limit');
+        const maxLength = 200;
+
+        messageInput.addEventListener('input', () => {
+            const currentLength = messageInput.value.length;
+            messageLimit.textContent = `${currentLength} / ${maxLength}`;
+            
+            if (currentLength > maxLength) {
+                messageLimit.classList.add('error');
+            } else {
+                messageLimit.classList.remove('error');
+            }
+        });
+        // --- END ADDED ---
+
 
         form.addEventListener('submit', async function(e) {
-            // Prevent the form from submitting the traditional way
             e.preventDefault();
             
-            // Disable button and show "Sending..."
             submitButton.disabled = true;
             submitButton.textContent = 'Sending...';
             statusMessage.style.display = 'none';
 
-            // Get the form data
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
-                message: document.getElementById('message').value,
+                message: messageInput.value, // Use the variable from above
             };
 
+            // --- ADDED ---
+            // Client-side validation check
+            if (formData.message.length > maxLength) {
+                statusMessage.textContent = 'Your message must be 200 characters or less.';
+                statusMessage.className = 'status-error';
+                statusMessage.style.display = 'block';
+                
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+                return; // Stop the form submission
+            }
+            // --- END ADDED ---
+
             try {
-                // Send the data to our Vercel function
+                // This path is still correct!
                 const response = await fetch('/api/send-mail', {
                     method: 'POST',
                     headers: {
@@ -138,24 +187,26 @@
                     body: JSON.stringify(formData),
                 });
 
+                const result = await response.json();
+
                 if (response.ok) {
-                    // Success!
                     statusMessage.textContent = "Message sent successfully! We'll be in touch soon.";
                     statusMessage.className = 'status-success';
-                    form.reset(); // Clear the form
+                    form.reset(); 
+                    // Reset character counter on success
+                    messageLimit.textContent = `0 / ${maxLength}`;
+                    messageLimit.classList.remove('error');
                 } else {
-                    // Server error
-                    statusMessage.textContent = 'Error sending message. Please try again later.';
+                    // Show server-side error (e.g., if validation failed there)
+                    statusMessage.textContent = result.message || 'Error sending message. Please try again later.';
                     statusMessage.className = 'status-error';
                 }
 
             } catch (error) {
-                // Network error
                 console.error('Fetch Error:', error);
                 statusMessage.textContent = 'A network error occurred. Please check your connection.';
                 statusMessage.className = 'status-error';
             } finally {
-                // Re-enable the button
                 statusMessage.style.display = 'block';
                 submitButton.disabled = false;
                 submitButton.textContent = 'Send Message';

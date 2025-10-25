@@ -15,6 +15,13 @@ export default async function handler(req, res) {
         return res.status(400).json({ message: 'Missing required fields' });
     }
 
+    // --- ADDED VALIDATION ---
+    // Server-side check for message length
+    if (message.length > 200) {
+        return res.status(400).json({ message: 'Message must be 200 characters or less.' });
+    }
+    // --- END ADDED VALIDATION ---
+
     // Create the transporter object. This is how you connect to Gmail.
     // We use Environment Variables (process.env) so your password isn't in the code.
     const transporter = nodemailer.createTransport({
