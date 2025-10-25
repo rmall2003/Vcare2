@@ -1,59 +1,52 @@
-/* --- Global Styles & Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-:root {
-    --primary-color: #005A9C; /* A professional, trustworthy blue */
-    --dark-text: #333333;
-    --light-text: #666666;
-    --background-light: #f9f9f9;
-    --white: #ffffff;
-    --border-color: #dddddd;
-    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05);
-    --shadow-dark: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* --- Global Styles --- */
 body {
     font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
     line-height: 1.6;
-    color: var(--dark-text);
-    background-color: var(--background-light);
 }
 
 .container {
-    max-width: 1200px;
+    width: 90%;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 20px;
-}
-
-img, video {
-    max-width: 100%;
-    height: auto;
-    display: block;
+    padding: 2rem 0;
 }
 
 a {
-    color: var(--primary-color);
+    color: #005A9C;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s;
 }
 
 a:hover {
     color: #003d6b;
 }
 
-.section-title {
-    font-size: 2.2rem;
-    font-weight: 700;
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #005A9C;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: 600;
     text-align: center;
-    margin-top: 3rem;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+    background-color: #004a80;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.section-title {
+    font-size: 2.25rem;
+    color: #003d6b;
+    text-align: center;
     margin-bottom: 2rem;
-    color: var(--primary-color);
 }
 
 .text-center {
@@ -62,8 +55,9 @@ a:hover {
 
 /* --- Header & Navigation --- */
 .header {
-    background: var(--white);
-    box-shadow: var(--shadow-dark);
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -73,156 +67,95 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 12px;
 }
 
-/* Added this style for your new image logo */
 .logo-img {
     width: 40px;
     height: 40px;
-    object-fit: contain; /* Prevents your logo from stretching */
-    border-radius: 4px; /* Optional: adds slightly rounded corners */
+    object-fit: contain;
+    margin-right: 0.75rem;
 }
 
 .logo-text h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary-color);
     margin: 0;
+    font-size: 1.5rem;
+    color: #005A9C;
 }
 
 .logo-text p {
-    font-style: italic;
-    color: var(--light-text);
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
+    color: #555;
 }
 
 .nav ul {
+    margin: 0;
+    padding: 0;
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 1.5rem;
 }
 
 .nav a {
     font-weight: 600;
-    color: var(--dark-text);
-    font-size: 1rem;
-    padding-bottom: 5px;
+    color: #333;
+    padding: 0.5rem 0;
     border-bottom: 2px solid transparent;
 }
 
 .nav a:hover {
-    color: var(--primary-color);
+    color: #005A9C;
 }
 
 .nav a.active {
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
+    color: #005A9C;
+    border-bottom-color: #005A9C;
 }
 
-/* --- Footer --- */
-.footer {
-    background: var(--dark-text);
-    color: #f4f4f4;
-    padding: 2.5rem 0;
-    margin-top: 4rem;
-    text-align: center;
-}
-
-.footer-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.footer-contact h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-.footer-contact a {
-    color: var(--white);
-}
-
-.footer-contact a:hover {
-    text-decoration: underline;
-}
-
-/* --- Buttons --- */
-.btn {
-    display: inline-block;
-    background: var(--primary-color);
-    color: var(--white);
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    background: #004a80;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-dark);
-}
-
-/* --- Hero Section (Landing Page) --- */
+/* --- Hero Section (index.html) --- */
 .hero {
-    background: linear-gradient(rgba(0, 90, 156, 0.85), rgba(0, 90, 156, 0.85)), url('https://placehold.co/1920x800/666/666/png') center center/cover no-repeat;
-    /* Replace with a real background image in your assets */
-    color: var(--white);
-    padding: 5rem 1.5rem;
+    background-color: #005A9C;
+    color: #ffffff;
     text-align: center;
-    border-radius: 0 0 15px 15px;
+    padding: 4rem 2rem;
 }
 
 .hero h1 {
     font-size: 3rem;
-    font-weight: 700;
     margin-bottom: 1rem;
 }
 
 .hero .subtitle {
-    font-size: 1.3rem;
-    max-width: 700px;
+    font-size: 1.25rem;
+    max-width: 600px;
     margin: 0 auto 2rem auto;
     line-height: 1.7;
-    text-align: center; /* Changed back to center */
+    text-align: center; /* This was reset to center */
 }
 
-/* --- Video Section --- */
+/* --- Main Video (index.html) --- */
 .video-section {
-    margin: 3rem 0;
-}
-
-/* This new rule constrains the main video on the landing page */
-.video-section .video-wrapper {
-    max-width: 1000px; /* Adjusted to match services page grid */
-    margin-left: auto;
-    margin-right: auto;
+    padding-top: 2rem;
 }
 
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio - adjust if your video has a different aspect ratio */
+    width: 100%;
+    max-width: 1000px; /* Consistent max-width */
+    margin: 0 auto;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     height: 0;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: var(--shadow-dark);
+    border-radius: 8px;
+    background: #000; /* Black background for letterboxing */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .video-wrapper video {
@@ -231,181 +164,194 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Set to contain to prevent cropping */
-    background: #000; /* Set to black to handle letterboxing */
+    object-fit: contain; /* Prevents cropping */
 }
 
-/* --- Features Grid --- */
+/* --- Features Grid (index.html) --- */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .feature-card {
-    background: var(--white);
+    background: #ffffff;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow-light);
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-dark);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .feature-card h3 {
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    margin-bottom: 0.75rem;
+    color: #005A9C;
+    margin-top: 0;
 }
 
-/* --- About Page --- */
+/* --- About & Services Pages --- */
 .about-section {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow-light);
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .about-section p {
+    font-size: 1.125rem;
     margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    line-height: 1.7;
 }
 
 .features-list {
+    font-size: 1.125rem;
     list-style-type: disc;
-    margin-left: 20px;
-    font-size: 1.1rem;
+    padding-left: 2rem;
 }
 
 .features-list li {
     margin-bottom: 1rem;
 }
 
+/* --- Gallery (services.html) --- */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.gallery-item {
     text-align: center;
 }
 
 .gallery-item img {
-    border-radius: 10px;
-    box-shadow: var(--shadow-light);
-    margin-bottom: 1rem;
     width: 100%;
-    height: 250px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    aspect-ratio: 3 / 2;
     object-fit: cover;
+    background: #e0e0e0;
 }
 
 .gallery-item p {
     font-weight: 600;
-    font-size: 1.1rem;
+    color: #333;
 }
 
-.other-videos .video-grid {
+/* --- Other Videos (services.html) --- */
+.other-videos {
+    padding-top: 2rem;
+}
+
+.video-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 2rem;
-    /* Add these lines to center the grid */
-    max-width: 1000px; /* Adjust as needed */
-    margin-left: auto;
-    margin-right: auto;
+    justify-items: center; /* Center the grid items */
+    max-width: 1000px; /* Match the main video section */
+    margin: 0 auto; /* Center the whole grid container */
 }
 
 .video-wrapper-small {
-    text-align: center;
+    width: 100%;
+    max-width: 450px; /* Constrain individual video size */
 }
 
 .video-wrapper-small h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    text-align: center;
+    color: #003d6b;
 }
 
-.video-wrapper-small .video-wrapper {
-    box-shadow: var(--shadow-light);
-}
-
-/* --- Contact Form --- */
+/* --- Contact Form (contact.html) --- */
 .contact-form {
-    background: var(--white);
-    padding: 2.5rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow-dark);
     max-width: 700px;
     margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
+    /* This is the fix: ensures label is on top of the input/textarea */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 8px;
     font-weight: 600;
-    font-size: 1rem;
+    color: #333;
+    display: block;
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="tel"],
-.form-group textarea { /* Corrected typo here */
+.form-group input,
+.form-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
     font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
+    border-color: #005A9C;
+    box-shadow: 0 0 0 3px rgba(0, 90, 156, 0.1);
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0, 90, 156, 0.2);
 }
 
+/* This was the style that was likely missing */
 .form-group textarea {
-    resize: vertical;
     min-height: 150px;
+    resize: vertical;
 }
 
 .btn-submit {
     width: 100%;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1.125rem;
+    padding: 1rem;
 }
 
-/* --- Responsive --- */
-@media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        gap: 1rem;
-    }
+.btn-submit:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
 
-    .nav ul {
-        justify-content: center;
-        width: 100%;
-    }
+/* --- Footer --- */
+.footer {
+    background-color: #003d6b;
+    color: #e0e0e0;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
 
-    .hero h1 {
-        font-size: 2.4rem;
-    }
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
 
-    .hero .subtitle {
-        font-size: 1.1rem;
-    }
+.footer-contact h3 {
+    color: #ffffff;
+    margin-top: 0;
+}
 
-    .other-videos .video-grid {
-        grid-template-columns: 1fr;
-    }
+.footer-contact a {
+    color: #ffffff;
+}
+
+.footer-contact a:hover {
+    text-decoration: underline;
+}
+
+.footer p {
+    margin: 0;
 }
 
